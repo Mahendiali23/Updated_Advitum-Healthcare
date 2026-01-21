@@ -25,12 +25,12 @@ jobs:
       # 3️⃣ Deploy Django app
       - name: Deploy to Hostinger VPS
         run: |
-          echo "~/.ssh/id"
+          
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} 'bash -s' << 'ENDSSH'
             set -e  # Exit immediately if a command Fails
 
             echo "➡️ Moving to project directory"
-            cd /var/www-data/Updated_Advitum-Healthcare
+            cd /var/www/Updated_Advitum-Healthcare
 
             echo "➡️ Pulling latest code from main branch"
             git reset --hard  # Ensure local changes don’t block pull
