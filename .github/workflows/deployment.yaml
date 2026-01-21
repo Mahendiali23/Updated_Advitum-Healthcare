@@ -53,4 +53,5 @@ jobs:
             systemctl reload nginx || echo "Failed to reload Nginx"
 
             echo "✅ Deployment finished successfully"
+            ENDSSH
 
