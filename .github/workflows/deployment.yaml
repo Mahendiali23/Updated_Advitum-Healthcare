@@ -18,11 +18,12 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
           ssh-keyscan -H ${{ secrets.HOSTINGER_IP_ADDRESS }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Hostinger VPS
         run: |
-          ssh -i ~/.ssh/id_rsa ${{secrets.HOSTINGER_USER}}@${{secrets.HOSTINGER_IP_ADDRESS}} << 'EOF'
+          ssh -i ~/.ssh/id_rsa ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_IP_ADDRESS }} << 'EOF'
 
           
     
