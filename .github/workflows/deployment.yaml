@@ -27,28 +27,28 @@ jobs:
             root@${{ secrets.HOSTINGER_IP_ADDRESS }} << 'EOF'
             set -e
             
-            echo "➡️ Moving to project directory"
+            echo "Moving to project directory"
             cd /var/www/Updated_Advitum-Healthcare
             
-            echo "➡️ Pulling latest code"
+            echo "Pulling latest code"
             git reset --hard
             git pull origin main
             
-            echo "➡️ Activating virtual environment"
+            echo "Activating virtual environment"
             source venv/bin/activate
             
-            echo "➡️ Installing dependencies"
+            echo "Installing dependencies"
             pip install -r requirements.txt
             
-            echo "➡️ Running migrations"
+            echo "Running migrations"
             python manage.py migrate --noinput
             
-            echo "➡️ Collecting static files"
+            echo "Collecting static files"
             python manage.py collectstatic --noinput
             
-            echo "➡️ Restarting services"
+            echo "Restarting services"
             systemctl restart gunicorn
             systemctl reload nginx
             
-            echo "✅ Deployment complete"
+            echo "Deployment complete"
           EOF
