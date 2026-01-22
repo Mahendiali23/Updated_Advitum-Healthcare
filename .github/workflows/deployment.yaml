@@ -19,52 +19,36 @@ jobs:
           echo "${{ secrets.HOSTINGER_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           chmod 700 ~/.ssh
-          
-          # Add verbose host key scanning
-          echo "Adding host to known_hosts..."
-          ssh-keyscan -H ${{ secrets.HOSTINGER_IP_ADDRESS }} >> ~/.ssh/known_hosts 2>&1
-          
-          # Verify key format
-          echo "Verifying SSH key format..."
-          ssh-keygen -l -f ~/.ssh/id_ed25519 || echo "Key verification failed"
-
-      - name: Test SSH Connection
-        run: |
-          echo "Testing SSH connection with verbose output..."
-          ssh -vvv -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
-            ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_IP_ADDRESS }} "echo 'Connection successful'" || {
-            echo "❌ SSH connection failed"
-            exit 1
-          }
+          ssh-keyscan -H ${{ secrets.HOSTINGER_IP_ADDRESS }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Hostinger VPS
         run: |
           ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no \
-            ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_IP_ADDRESS }} << 'EOF'
+            root@${{ secrets.HOSTINGER_IP_ADDRESS }} << 'EOF'
             set -e
             
             echo "➡️ Moving to project directory"
             cd /var/www/Updated_Advitum-Healthcare
             
-            echo "➡️ Pulling latest code from main branch"
+            echo "➡️ Pulling latest code"
             git reset --hard
             git pull origin main
             
             echo "➡️ Activating virtual environment"
             source venv/bin/activate
             
-            echo "➡️ Installing/updating dependencies"
+            echo "➡️ Installing dependencies"
             pip install -r requirements.txt
             
-            echo "➡️ Running Django migrations"
+            echo "➡️ Running migrations"
             python manage.py migrate --noinput
             
             echo "➡️ Collecting static files"
             python manage.py collectstatic --noinput
             
-            echo "➡️ Restarting Gunicorn and reloading Nginx"
-            sudo systemctl restart gunicorn
-            sudo systemctl reload nginx
+            echo "➡️ Restarting services"
+            systemctl restart gunicorn
+            systemctl reload nginx
             
-            echo "✅ Deployment finished successfully"
+            echo "✅ Deployment complete"
           EOF
