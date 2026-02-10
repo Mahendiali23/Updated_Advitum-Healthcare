@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     {% load static %}
     <title>AdVitum Healthcare</title>
+    <link rel="icon" type="image/png" href="{% static 'title_logo.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'title_logo.png' %}">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -220,7 +224,7 @@
             background-size: cover; z-index: 0;
         }
         .hero-content { position: relative; z-index: 2; flex: 1; }
-        .hero-content h1 { font-size: 3.5rem; line-height: 1.1; color: var(--text-dark); margin-bottom: 20px; }
+        .hero-content h1 { font-size: 3rem; line-height: 1.1; color: var(--text-dark); margin-bottom: 20px;font-weight: 700; }
         
         .image-carousel {
             flex: 1; position: relative; height: 300px; border-radius: 30px; 
@@ -594,12 +598,9 @@
 <div class="hero-banner">
     <div class="hero-background"></div>
     <div class="hero-content">
-        <h1>Empowering <br>Modern Healthcare</h1>
+        <h1>Excellence in Surgical & Medical Disposable Exports</h1>
         <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 35px; max-width: 600px;">
-        Providing a comprehensive range of reliable medical equipment and ISO-certified supplies 
-        specifically engineered for hospitals, clinics, and specialized care centers worldwide. 
-        We bridge the gap between global manufacturers and local healthcare providers, ensuring 
-        uncompromising quality, technical support, and rapid logistics in every delivery.
+      We deliver meticulously crafted surgical and medical disposable products, developed to meet the most demanding international quality and regulatory standards.
     </p>  <a href="{% url 'products' %}" class="explore-btn">EXPLORE PRODUCTS</a>
     </div>
 

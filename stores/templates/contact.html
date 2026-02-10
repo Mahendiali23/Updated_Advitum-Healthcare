@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     {% load static %}
     <title>AdVitum Healthcare</title>
+    <link rel="icon" type="image/png" href="{% static 'title_logo.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'title_logo.png' %}">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -167,8 +171,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
             
             <div class="lg:col-span-7 bg-white p-8 md:p-12 rounded-[40px] border border-gray-100 shadow-sm">
-                <h2 class="text-4xl font-black mb-2">Send a Message</h2>
-                <p class="text-gray-400 mb-10">Inquire about bulk orders, product specs, or partnerships.</p>
+                <h2 class="text-4xl font-black mb-2">Connect with us!</h2>
                 
                <form id="whatsapp-form" class="space-y-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -177,7 +180,7 @@
             <input type="text" id="wa_name" class="form-input" placeholder="John Doe" required>
         </div>
         <div>
-            <label class="block text-sm font-bold mb-2 ml-1">Country , city</label>
+            <label class="block text-sm font-bold mb-2 ml-1">Country , City</label>
             <input type="text" id="wa_facility" class="form-input" placeholder="India, ahmedabad">
         </div>
     </div>
@@ -199,8 +202,8 @@
     </div>
 
     <button type="button" onclick="sendToWhatsApp()" class="w-full bg-[#25D366] text-white font-bold py-5 rounded-2xl hover:bg-[#128C7E] transition-all shadow-lg flex items-center justify-center gap-3">
-        <i class="fab fa-whatsapp text-2xl"></i>
-        Send to Advitum 
+    
+        SUBMIT 
     </button>
 </form>
 
@@ -214,15 +217,15 @@
                     <div class="flex items-start gap-5">
                         <div class="mt-1"><i class="fas fa-map-marker-alt text-xl opacity-70"></i></div>
                         <div>
-                            <p class="text-sm opacity-60 uppercase font-bold tracking-widest mb-1">Our Warehouse</p>
-                            <p class="text-lg font-medium">Siddhi Vinayak Business Park, Makarba, S.G. Road, Ahmedabad - 380051</p>
+                            <p class="text-sm opacity-60 uppercase font-bold tracking-widest mb-1">Our Office</p>
+                            <p class="text-lg font-medium">Siddhi Vinayak Business Park, Makarba, S.G. Road, Ahmedabad(380051) , Gujarat , India</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-5">
                         <div class="mt-1"><i class="fas fa-phone-alt text-xl opacity-70"></i></div>
                         <div>
-                            <p class="text-sm opacity-60 uppercase font-bold tracking-widest mb-1">Wholesale Support</p>
+                            <p class="text-sm opacity-60 uppercase font-bold tracking-widest mb-1">contact</p>
                             <p class="text-lg font-medium">+91 9898265440</p>
                         </div>
                     </div>
@@ -278,8 +281,8 @@
                     <div class="w-12 h-12 bg-[#00A79D]/10 rounded-xl flex items-center justify-center text-[#00A79D] mb-6">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Warranty Support</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">All medical instruments come with a standard 12-month manufacturing warranty and technical setup support.</p>
+                    <h4 class="text-xl font-bold mb-3">Regulatory & Compliance Support</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Our team assists with country-specific regulatory documentation, labeling requirements, and quality certifications to help ensure seamless import approvals across international markets.</p>
                 </div>
             </div>
         </div>
