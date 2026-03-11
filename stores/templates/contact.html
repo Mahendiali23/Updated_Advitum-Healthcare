@@ -57,13 +57,13 @@
         nav.scrolled .logo, nav.scrolled .healthcare { color: rgb(58, 58, 58); }
         nav.scrolled .main-logo-image { height: 60px; filter: brightness(0) invert(1); }
 
-        .nav-links-main { display: flex; gap: 30px; }
-        .nav-links-main li a { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); position: relative; padding-bottom: 5px; }
+        .nav-links-main { display: flex; gap: 50px; }
+        .nav-links-main li a { font-weight: 500; font-size: 0.8rem; color: var(--text-dark); position: relative; padding-bottom: 5px; }
         .nav-links-main li a::after {
             content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 3px;
             background: var(--primary-color); transition: 0.3s;
         }
-        .nav-links-main li a:hover::after, .nav-links-main li a.active-link::after { width: 100%; }
+        .nav-links-main li a:hover::after, .nav-links-main li a.active-link::after { width: 100%; font-weight: 800; font-size: 0.9rem; color: var(--primary-color); }
         nav.scrolled .nav-links-main li a { color: white; }
         nav.scrolled .nav-links-main li a::after { background: white; }
 
@@ -262,6 +262,141 @@
     }
 }
 
+
+/* --- FOOTER MAIN STYLING --- */
+.site-footer {
+    background: #0a2523;
+    color: #e8f6f5;
+    border-top: 6px solid #00A79D;
+    padding: 80px 0 30px;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: grid;
+    /* Desktop: 4 Columns */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+/* --- LOGO & TEXT --- */
+.footer-logo {
+    height: 55px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 20px;
+}
+
+.footer-col p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #bcd6d4;
+    margin-bottom: 20px;
+}
+
+/* --- HEADINGS & LINKS --- */
+.footer-col h4 {
+    color: #00A79D;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a {
+    color: #bcd6d4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+/* --- CONTACT LIST --- */
+.contact-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #bcd6d4;
+    margin-bottom: 15px;
+}
+
+.contact-list i { color: #00A79D; width: 18px; }
+
+/* --- CENTERED SOCIAL LINKS (CREATIVE) --- */
+.social-centered-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centers horizontal */
+    margin-top: 60px; /* Big top margin as requested */
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+    border-radius: 12px;
+    color: #3a3a3a;
+    border: 1px solid rgba(0, 167, 157, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 167, 157, 0.3);
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablet (2x2 Grid) */
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 30px;
+    }
+}
+
+/* Mobile (Single Column & Center Everything) */
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-logo { margin: 0 auto 20px; }
+
+    .contact-list li {
+        justify-content: center;
+    }
+
+    .social-centered-wrapper {
+        margin-top: 40px;
+    }
+}
+
       
     </style>
 </head>
@@ -301,18 +436,18 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
             <label class="block text-sm font-bold mb-2 ml-1">Full Name</label>
-            <input type="text" id="wa_name" class="form-input" placeholder="John Doe" required>
+            <input type="text" id="wa_name" class="form-input" placeholder="Your Full Name" required>
         </div>
         <div>
             <label class="block text-sm font-bold mb-2 ml-1">Country , City</label>
-            <input type="text" id="wa_facility" class="form-input" placeholder="India, ahmedabad">
+            <input type="text" id="wa_facility" class="form-input" placeholder="India, Ahmedabad">
         </div>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
             <label class="block text-sm font-bold mb-2 ml-1">Email Address</label>
-            <input type="email" id="wa_email" class="form-input" placeholder="john@example.com">
+            <input type="email" id="wa_email" class="form-input" placeholder="abc@example.com">
         </div>
         <div>
             <label class="block text-sm font-bold mb-2 ml-1">Phone Number</label>
@@ -418,52 +553,57 @@
 
     </div>
 </main>
+
 <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <div class="footer-logo-container">
-                    <img src="{% static 'new_logo.png' %}" alt="AdVitum Logo" class="footer-logo">
-                </div>
-                <p>Trusted global supplier of certified surgical and medical disposable products, delivering quality and reliability to international healthcare markets.</p>
-                <div class="footer-social">
-                     <a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-<a href="https://wa.me/9898265440" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<a href="https://www.facebook.com/share/1QCwCrvfFL" target="_blank"><i class="fab fa-facebook-f"></i></a>
-
-                </div>
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="footer-logo-container">
+                <img src="{% static 'new_logo.png' %}" alt="AdVitum Logo" class="footer-logo">
             </div>
-
-            <div class="footer-col">
-                <h4>Product Categories</h4>
-                <ul>
-                    <li><a href="{% url 'products' %}">Surgical Gloves</a></li>
-                    <li><a href="{% url 'products' %}">Face Masks</a></li>
-                    <li><a href="{% url 'products' %}">IV Cannula</a></li>
-                    <li><a href="{% url 'products' %}">Disposable Gowns</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'products' %}">Products</a></li>
-                    <li><a href="{% url 'about' %}">About Us</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <ul class="contact-list">
-                    <li><i class="fas fa-envelope"></i> info@advitumhealthcare.com</li>
-                    <li><i class="fas fa-phone"></i> +91 9898265440</li>
-                    <li><i class="fas fa-location-dot"></i> Gujarat, India</li>
-                </ul>
-            </div>
+            <p>Trusted global supplier of certified surgical and medical disposable products, delivering quality and reliability to international healthcare markets.</p>
         </div>
 
-    </footer>
+        <div class="footer-col">
+            <h4>Product Categories</h4>
+            <ul>
+                <li><a href="{% url 'products' %}">Surgical Gloves</a></li>
+                <li><a href="{% url 'products' %}">Face Masks</a></li>
+                <li><a href="{% url 'products' %}">IV Cannula</a></li>
+                <li><a href="{% url 'products' %}">Disposable Gowns</a></li>
+                <li><a href="{% url 'products' %}">Diagnostic & Lab Products</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'products' %}">Products</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul class="contact-list">
+                <li><i class="fas fa-envelope"></i> info@advitumhealthcare.com</li>
+                <li><i class="fas fa-phone"></i> +91 9898265440</li>
+                <li><i class="fas fa-location-dot"></i>Siddhi Vinayak Business Park, Makarba, S.G. Road, Ahmedabad(380051), Gujarat, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="social-centered-wrapper">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/9898265440" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/YOUR_USERNAME" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1QCwCrvfFL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/AdVitumHC" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+</footer>
 
 <script>
     window.addEventListener('scroll', function() {
@@ -505,15 +645,15 @@ function sendToWhatsApp() {
 
     // 4. Create the message template using BACKTICKS (`)
     // %0A is the code for a new line in a URL
-    const finalMessage = `New Inquiry for AdVitum%0A%0A
-Name: ${name}%0A
-Facility: ${facility}%0A
-Email: ${email}%0A
-Phone: ${phone}%0A%0A
-Message: ${message}`;
+    const finalMessage = `*New Inquiry for AdVitum*%0A%0A` +
+        `*Name:* ${name}%0A` +
+        `*Facility:* ${facility}%0A` +
+        `*Email:* ${email}%0A` +
+        `*Phone:* ${phone}%0A%0A` +
+        `*Message:* ${message}`;
+
     // 5. Open WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${finalMessage}`;
-
     window.open(whatsappUrl, '_blank').focus();
 }
 

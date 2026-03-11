@@ -55,20 +55,20 @@
 
         nav.scrolled { background: var(--primary-color); height: 70px; border-radius: 0; }
         .logo-section { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .main-logo-image { height: 80px; width: auto; transition: 0.4s; margin-left: -25px; }
+        .main-logo-image { height: 80px; width: auto; transition: 0.4s;  }
         .logo { font-weight: 800; font-size: 1.3em; color: var(--primary-color); font-style: italic; }
         .healthcare { color: #333; font-size: .65rem; font-weight: 700; margin-top: -5px; }
         
         nav.scrolled .logo, nav.scrolled .healthcare { color: rgb(58, 58, 58); }
         nav.scrolled .main-logo-image { height: 60px; filter: brightness(0) invert(1); }
 
-        .nav-links-main { display: flex; gap: 30px; }
-        .nav-links-main li a { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); position: relative; padding-bottom: 5px; }
+        .nav-links-main { display: flex; gap: 50px; }
+        .nav-links-main li a { font-weight: 500; font-size: 0.8rem; color: var(--text-dark); position: relative; padding-bottom: 5px; }
         .nav-links-main li a::after {
             content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 3px;
             background: var(--primary-color); transition: 0.3s;
         }
-        .nav-links-main li a:hover::after, .nav-links-main li a.active-link::after { width: 100%; }
+        .nav-links-main li a:hover::after, .nav-links-main li a.active-link::after { width: 100%; font-weight: 800; font-size: 0.9rem; color: var(--primary-color); }
         nav.scrolled .nav-links-main li a { color: white; }
         nav.scrolled .nav-links-main li a::after { background: white; }
 
@@ -93,7 +93,7 @@
         /* 1. Main Diagonal Color Section */
         linear-gradient(
             -160deg,
-            white 45%, /* Starts as white */
+            rgb(255, 255, 255) 45%, /* Starts as white */
             rgb(213, 233, 233) 45.1%, /* Sharp transition to accent color */
             var(--accent-color) 60%,
             rgb(234, 241, 241)100% /* Blends to primary color at the far edge */
@@ -123,6 +123,7 @@
     font-size: 0.75rem; 
     font-weight: 700; 
     margin-left: -15px;
+   
     color: rgb(44, 44, 44); /* Using your teal for the text so it's readable */
     letter-spacing: 0.3px;
     position: relative;
@@ -132,6 +133,8 @@
 .social-icons {
     display: flex;
     gap: 15px;
+   
+
     position: relative;
     z-index: 2;
 }
@@ -139,6 +142,7 @@
 .social-icons a { 
     font-size: 1.1rem; 
     color: var(--primary-color); 
+    background-color: #2a807a;
     transition: all 0.3s ease;
 }
 
@@ -176,121 +180,98 @@
         .social-icons a { font-size: 1.1rem; color: #444; transition: 0.3s; }
         .social-icons a:hover { transform: translateY(-3px) scale(1.2); color: var(--primary-color); }
 
-        /* --- HERO & CAROUSEL --- */
-       .hero-banner {
-    width: 100%; 
-    height: auto;
-    min-height: 700px;
-    max-height: 900px; 
-    display: flex; 
-    justify-content: center;
-    position: relative; 
-    padding: 0 5%; 
-    align-items: center;
-    gap: 40px;
+        /* --- HERO CAROUSEL SETTINGS --- */
+.hero-banner {
+    width: 100%;
+    height: 85vh; /* Responsive height */
+    position: relative;
     overflow: hidden;
-    
-       /* Base: Clean White for optimal product visibility */
-    background-color: white; 
-    
-    /* --- E-COMMERCE SLICE DESIGN CODE --- */
-    background-image:
-        /* 1. Main Diagonal Color Section */
-        linear-gradient(
-            -45deg,
-            white 45%, /* Starts as white */
-            rgb(234, 241, 241) 45.1%, /* Sharp transition to accent color */
-            var(--accent-color) 90%,
-            rgb(234, 241, 241)100% /* Blends to primary color at the far edge */
-        );
-
-    background-size: 100% 100%;
-    /* You can adjust background-position if you use a photo that needs to align 
-       with the color slice. */
-    background-position: center center;
-    
-    /* Add a subtle shadow for a 'floating' clean product feel */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); 
-    /* ----------------------------------- */
+    background: #0a2523; /* Solid AdVitum Dark Teal */
 }
 
-    
-    
+.hero-image-loop {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
 
-        .hero-background {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 30%, transparent), 
-            url('https://images.unsplash.com/photo-1576091160399-112ba8d25d10?auto=format&fit=crop&w=1400&q=80');
-            background-size: cover; z-index: 0;
-        }
-        .hero-content { position: relative; z-index: 2; flex: 1; }
-        .hero-content h1 { font-size: 3rem; line-height: 1.1; color: var(--text-dark); margin-bottom: 20px;font-weight: 700; }
+.hero-image-loop img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents image stretching */
+    opacity: 0;
+    /* 12s total: 4s per image (3 images) */
+    animation: medicalFadeLoop 16s infinite; 
+}
 
-        .hero-text-slides { position: relative; }
-        .hero-text-slide {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-        }
-        .hero-text-slide.active-text {
-            opacity: 1;
-            transform: translateY(0);
-            position: relative;
-            pointer-events: auto;
-        }
-        
-        .image-carousel {
-            flex: 1; position: relative; height: 300px; border-radius: 30px; 
-           
-            background: linear-gradient(90deg, #e0f2f1 0%, #ffffff 50%, #e0f2f1 100%); 
-            overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); z-index: 2;
-            transition: transform 0.5s ease;
+/* Staggered timing for the 3 images */
+.hero-image-loop img:nth-child(1) { animation-delay: 0s; }
+.hero-image-loop img:nth-child(2) { animation-delay: 6s; }
+.hero-image-loop img:nth-child(3) { animation-delay: 10s; }
 
-               /* Base: Clean White for optimal product visibility */
-    background-color: white; 
-    
-    /* --- E-COMMERCE SLICE DESIGN CODE --- */
-    background-image:
-        /* 1. Main Diagonal Color Section */
-        linear-gradient(
-            -150deg,
-            white 45%, /* Starts as white */
-            rgb(234, 241, 241) 45.1%, /* Sharp transition to accent color */
-            var(--accent-color) 40%,
-            rgb(234, 241, 241)90% /* Blends to primary color at the far edge */
-        );
+@keyframes medicalFadeLoop {
+    0% { opacity: 0; }
+    10% { opacity: 1; }   /* Smooth fade in */
+    33% { opacity: 1; }   /* Stay visible */
+    43% { opacity: 0; }   /* Smooth fade out */
+    100% { opacity: 0; }
+}
 
-    background-size: 100% 100%;
-    /* You can adjust background-position if you use a photo that needs to align 
-       with the color slice. */
-    background-position: center center;
-   border-radius: 40px;
-    /* This combines the colored hard shadow and the subtle soft shadow */
-    box-shadow: 
-        20px 20px 0px var(--accent-color), 
-        0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-        
-        .image-carousel:hover { transform: scale(1.10); height: 300px; }
-        .carousel-images img { width: 100%; height: 100%; object-fit: cover; position: absolute; opacity: 0; transition: 1s; }
-        .carousel-images img.active-image { opacity: 1; }
+/* --- CENTERED EXPLORE BUTTON --- */
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+}
 
-        .explore-btn {
-            display: inline-block; padding: 16px 40px; background: var(--primary-color);
-            color: white; border-radius: 50px; font-weight: 500; transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 167, 157, 0.2);
-        }
-        .explore-btn:hover {
-            display: inline-block; padding: 16px 40px; background: var(--primary-dark);
-            color: rgb(219, 219, 219); border-radius: 50px; font-weight: 700; transition: 0.3s;
-          
-            box-shadow: 0 10px 20px rgba(0, 167, 157, 0.2);
-        }
+.explore-btn {
+    background: transparent; /* AdVitum Brand Teal */
+    color: #353535;
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.explore-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+     border-radius: 10px;
+    border: 1px var(--accent);
+    transform: scale(1.05);
+    backdrop-filter: blur(5px);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 60vh; /* Shorter for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        height: 50vh; /* Optimized for mobile phones */
+    }
+    .explore-btn {
+        padding: 12px 25px;
+        font-size: 0.85rem;
+    }
+}
+      
 
         /* --- SCROLL CARDS --- */
         .scroll-container {
@@ -343,85 +324,101 @@
 
 
 :root {
-    --card-w: 280px;      /* Standard size */
-    --card-scale: 1.2;    /* Middle growth */
-    --accent: #3b82f6;
-    --bg-soft: #f8fafb;
+    --card-w: 220px;      /* Smaller base width for a cleaner look */
+    --card-scale: 1.25;   /* Middle card grows 25% */
+    --gap: 40px;          /* Physical space between cards */
+    --accent: #00A79D;    /* AdVitum Teal */
 }
 
-/* 1. Ensure the container centers the first card perfectly on all screens */
+/* 1. The Scroll Container */
 .scroll-container {
     display: flex;
-    gap: 40px;
+    align-items: center;
     overflow-x: auto;
-    /* This calculation is the 'Developer Secret' for perfect centering */
-    padding: 50px calc(50% - (var(--card-w) / 2));
+    /* Centers the card by offsetting half the screen minus half the card width */
+    padding: 80px calc(50% - (var(--card-w) / 2));
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    align-items: center;
-    /* Edge fading mask */
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-overflow-scrolling: touch;
 }
 
 .scroll-container::-webkit-scrollbar { display: none; }
 
+/* 2. The Feature Card */
 .feature-card {
     min-width: var(--card-w);
     flex: 0 0 var(--card-w);
-    aspect-ratio: 1 / 1;
     scroll-snap-align: center;
+    /* Margin prevents any overlap during the scaling transition */
+    margin: 0 var(--gap); 
     perspective: 1000px;
+    will-change: transform, opacity;
 }
 
-/* 2. Professional Inner Card Design */
+/* 3. The Inner Box - Default Small State */
 .inner-square {
     width: 100%;
-    height: 100%;
     background: #ffffff;
-    border-radius: 42px; /* Super-ellipse squircle */
+    border-radius: 35px; 
+    padding: 35px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    padding: 32px;
-    border: 1px solid rgba(0,0,0,0.03);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     
-    /* Smooth Transition Setup */
-    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-    transform: scale(0.85); 
+    /* Side cards stay small (80% size) and faded */
+    transform: scale(0.8); 
     opacity: 0.4;
-    filter: blur(1px);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* 3. The 'Middle' Focus State */
+/* 4. The 'Middle' Focus State */
 .feature-card.is-active .inner-square {
+    /* Middle card grows to 125% of its base size */
     transform: scale(var(--card-scale));
     opacity: 1;
-    filter: blur(0px);
-    box-shadow: 0 40px 80px rgba(59, 130, 246, 0.12);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(0, 167, 157, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 167, 157, 0.15);
 }
 
-/* 4. Icon & Typography refinement */
+/* 5. Typography & Content */
 .icon-blob {
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    transition: 0.5s ease;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
 }
 
 .feature-card.is-active .icon-blob {
-    transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* 6. Responsive Fix for Mobile */
+@media (max-width: 640px) {
+    :root {
+        --card-w: 180px; /* Even smaller for mobile screens */
+        --gap: 20px;
+    }
 }
 
 /* 5. Modern Nav Buttons */
@@ -580,72 +577,589 @@
 }
 
 
-
-
-
-/* Everything between your Header and Footer must be wrapped in a <main> 
-   or <div> with this class */
-.content-wrapper {
-    flex: 1 0 auto; /* This 'grows' to fill empty space, pushing footer down */
+  
+/* --- CREATIVE "WHY CHOOSE US" SECTION --- */
+#about-us-section {
+    padding: 100px 5%;
+    background-color: white; /* Original soft background */
+    
+    font-family: 'Inter', sans-serif;
 }
 
-.site-footer {
-    flex-shrink: 0; /* Prevents the footer from squishing */
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #fafafa;
 }
 
-/* --- PREMIUM FOOTER STYLING --- */
+/* Intro Text Styling */
+.about-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.about-intro h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Decorative underline for the main heading */
+.about-intro h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #00A79D;
+   
+    border-radius: 2px;
+}
+
+.about-intro p {
+    font-size: 0.95rem;
+    color: #2b2b2b; /* */
+    font-weight: 500;
+    font-size: medium;
+    line-height: 2;
+    max-width: 800px;
+    margin: 25px auto 0;
+}
+
+/* --- THE CREATIVE BOX GRID --- */
+.benefits-grid {
+    display: grid;
+    /* Creates a 3-column layout that becomes 1 column on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 167, 157, 0.1);
+    border-left: 5px solid #00A79D; /* Creative Brand Accent */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Premium Hover Effect: Card expands and shadow deepens */
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 167, 157, 0.12);
+    background: #ffffff;
+}
+
+/* Background Number Decoration (01, 02, 03) */
+.benefit-card::before {
+    content: attr(data-number);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0, 167, 157, 0.05);
+    line-height: 1;
+}
+
+.benefit-card h3 {
+    font-size: 1.1rem;
+    color: #2c3e50; /* */
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Custom Bullet List Styling */
+.benefit-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefit-card ul li {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #555555;
+}
+
+/* The Play Button Icon Replacement */
+.benefit-card ul li span.icon {
+    color: #00A79D; /* */
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.benefit-card ul li strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Responsive Fix for Mobile */
+@media (max-width: 600px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-intro h2 {
+        font-size: 1.8rem;
+    }
+}
+/* --- IMPACT SECTION WITH CREATIVE BACKGROUND --- */
+#impact-section {
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+    /* Maintain the clean background from image_15.png */
+    background: radial-gradient(circle at 10% 20%, rgba(0, 167, 157, 0.05) 0%, #f8fafb 90%);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Decorative background blur circles - Kept subtle */
+#impact-section::before, #impact-section::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(0, 167, 157, 0.03);
+    filter: blur(80px);
+    z-index: 0;
+}
+
+#impact-section::before { top: -100px; right: -100px; }
+#impact-section::after { bottom: -150px; left: -100px; }
+
+.container-impact {
+    position: relative;
+    z-index: 1; /* Keeps content above background effects */
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Feature Grid */
+.impact-points-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    flex: 1.2;
+}
+
+/* --- ELEVATED IMPACT CARDS --- */
+.impact-card {
+    /* Solid background works better for deep elevation than transparency */
+    background: #ffffff; 
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 167, 157, 0.05); /* Very subtle border */
+    
+    /* --- KEY FIX: NEW DEEP DEFAULT SHADOW --- */
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.03), /* Soft spread */
+        0 2px 4px rgba(0, 0, 0, 0.02), /* Closer definition */
+        inset 0 1px 1px rgba(255, 255, 255, 0.5); /* Internal rim light */
+
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
+
+/* Card lifts up further, shadow intensifies and spreads */
+.impact-card:hover {
+    /* --- KEY FIX: DEEP TRANSFORM LIFT --- */
+    transform: translateY(-12px); /* Card lifts higher */
+    border-color: #00A79D; /* Brand accent */
+    
+    /* --- KEY FIX: NEW HOVER DEEP SHADOW --- */
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.08), /* Deep, soft primary shadow */
+        0 10px 20px rgba(0, 167, 157, 0.05), /* Subtle teal colored shadow */
+        inset 0 1px 1px rgba(255, 255, 255, 0.9); /* Sharper top-edge light */
+}
+
+/* Title Styling */
+.impact-card strong {
+    color: #1a202c; /* Title color from image_15.png */
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* Teal Icon Circle */
+.impact-card strong::before {
+    content: '→';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #00A79D; /* AdVitum signature teal */
+    color: white;
+    font-size: 0.7rem;
+    border-radius: 50%;
+}
+
+/* Body Text Styling */
+.impact-card span {
+    font-size: 0.85rem;
+    color: #5f6c80; /* Body text color from image_15.png */
+    line-height: 1.6;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 992px) {
+    .impact-points-grid { grid-template-columns: 1fr; }
+}
+
+/* experience and all  */
+/* --- FULL SECTION STYLING --- */
+.stats-section {
+    background: linear-gradient(135deg, #08dbcd 0%, #2a807a 100%);
+    padding: 10px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    margin: 40px auto;
+    max-width: 1300px;
+}
+
+.stats-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space for bubbles to grow */
+}
+
+/* --- THE 3D MEDICAL BUBBLE --- */
+.stat-card {
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Clips the dark hover overlay to the circle */
+}
+
+/* THE BUBBLE SHINE (Specular Highlight) */
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 15%;
+    width: 35px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    filter: blur(5px);
+    transform: rotate(-30deg);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* --- DEFAULT STATE: THE NUMBER --- */
+.stat-content {
+    text-align: center;
+    transition: all 0.4s ease;
+    z-index: 2;
+    opacity: 1;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    display: block;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* --- HOVER STATE: THE DESCRIPTION --- */
+.stat-desc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a2523 !important; /* Dark solid teal for 100% visibility */
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    font-weight: 500;
+    
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.4s ease-in-out;
+    z-index: 5;
+}
+
+/* --- INTERACTION LOGIC --- */
+
+/* 1. Bubble Grows Big */
+.stat-card:hover {
+    transform: scale(1.25); 
+    z-index: 10;
+    border-color: #ffffff;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* 2. Number Disappears */
+.stat-card:hover .stat-content {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* 3. Text Becomes Visible */
+.stat-card:hover .stat-desc {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .stats-section { padding: 60px 20px; }
+    .stat-card { width: 140px; height: 140px; }
+    .stat-number { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .stat-card { width: 130px; height: 130px; }
+    .stat-card:hover { transform: scale(1.1); } /* Smaller expansion for mobile screens */
+    .stat-desc { font-size: 0.65rem; padding: 10px; }
+}
+
+/* certificates  */
+/* --- CERTIFICATION SECTION --- */
+.cert-section {
+    padding: 80px 5%;
+    background: #f8fafb;
+    font-family: 'Inter', sans-serif;
+}
+
+.cert-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cert-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- RESPONSIVE GRID --- */
+.cert-grid {
+    display: grid;
+    /* Desktop: 4 columns | Tablet: 2 columns | Mobile: 2 columns */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    justify-items: center;
+}
+
+/* --- CREATIVE CERT CARD --- */
+.cert-card {
+    background: white;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1 / 1; /* Keeps them perfectly square */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(0, 167, 157, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+/* Hover: Lift and Glow */
+.cert-card:hover {
+    transform: translateY(-10px);
+    border-color: #00A79D;
+    box-shadow: 0 20px 40px rgba(0, 167, 157, 0.1);
+}
+
+/* The Icon Wrapper */
+.cert-icon-bg {
+    width: 90px;
+    height: 90px;
+    background: #f0f7f7;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.cert-card:hover .cert-icon-bg {
+    background: rgba(0, 167, 157, 0.1);
+}
+
+.cert-icon-bg img {
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: contain;
+    filter: grayscale(100%); /* Sterile look by default */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover img {
+    filter: grayscale(0%); /* Brings color on hover */
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.cert-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- MOBILE & TABLET RESPONSIVENESS --- */
+
+@media (max-width: 1024px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row for tablets */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cert-section {
+        padding: 50px 15px;
+    }
+    
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr); /* FORCED 2 PER ROW ON MOBILE */
+        gap: 15px;
+    }
+    
+    .cert-card {
+        padding: 20px 10px;
+    }
+    
+    .cert-icon-bg {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .cert-icon-bg img {
+        max-width: 50px;
+    }
+    
+    .cert-name {
+        font-size: 0.75rem;
+    }
+}
+
+/* --- FOOTER MAIN STYLING --- */
 .site-footer {
-    background: #0a2523; /* Deep Medical Teal-Black */
+    background: #0a2523;
     color: #e8f6f5;
-    border-top: 5px solid #00A79D;
-    padding-top: 20px;
+    border-top: 6px solid #00A79D;
+    padding: 80px 0 30px;
     font-family: 'Inter', sans-serif;
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 60px 5% 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
     display: grid;
-    /* This makes it responsive: 4 columns on desktop, 1 on mobile */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Desktop: 4 Columns */
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 40px;
 }
 
-/* Logo Styling */
+/* --- LOGO & TEXT --- */
 .footer-logo {
-    height: 70px;
-    width: auto;
-    filter: brightness(0) invert(1); /* Makes the logo pure white */
+    height: 55px;
+    filter: brightness(0) invert(1);
     margin-bottom: 20px;
 }
 
 .footer-col p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.8;
     color: #bcd6d4;
+    margin-bottom: 20px;
 }
 
-/* Headings */
+/* --- HEADINGS & LINKS --- */
 .footer-col h4 {
-    font-size: 0.9rem;
     color: #00A79D;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 25px;
     font-weight: 700;
 }
 
-/* Navigation Links */
-.footer-col ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-col ul li {
-    margin-bottom: 12px;
-}
-
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 12px; }
 .footer-col ul li a {
     color: #bcd6d4;
     text-decoration: none;
@@ -655,66 +1169,380 @@
 
 .footer-col ul li a:hover {
     color: #ffffff;
-    padding-left: 8px; /* Smooth slide effect on hover */
+    padding-left: 5px;
 }
 
-/* Contact List */
+/* --- CONTACT LIST --- */
 .contact-list li {
     display: flex;
-    align-items: flex-start;
     gap: 12px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #bcd6d4;
     margin-bottom: 15px;
 }
 
-.contact-list i {
-    color: #00A79D;
-    margin-top: 4px;
-}
+.contact-list i { color: #00A79D; width: 18px; }
 
-/* Glassmorphism Social Icons */
-.footer-social { display: flex; gap: 12px; margin-top: 25px; }
-.footer-social a {
-    width: 40px; height: 40px; 
-    background: rgba(255, 255, 255, 0.05);
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 10px; color: #fff; 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.3s;
-}
-
-.footer-social a:hover {
-    background: #00A79D;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 167, 157, 0.3);
-}
-
-/* Bottom Copyright Bar */
-.footer-bottom {
-    background: rgba(0,0,0,0.2);
-    text-align: center;
-    padding: 25px;
-    margin: -35px;
-    font-size: 0.85rem;
-    color: #8da9a7;
+/* --- CENTERED SOCIAL LINKS (CREATIVE) --- */
+.social-centered-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centers horizontal */
+    margin-top: 60px; /* Big top margin as requested */
+    padding-top: 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- RESPONSIVE FIX --- */
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+    border-radius: 12px;
+    color: #3a3a3a;
+    border: 1px solid rgba(0, 167, 157, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 167, 157, 0.3);
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablet (2x2 Grid) */
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 30px;
+    }
+}
+
+/* Mobile (Single Column & Center Everything) */
 @media (max-width: 600px) {
     .footer-container {
+        grid-template-columns: 1fr;
         text-align: center;
     }
-    .footer-social, .contact-list li {
+
+    .footer-logo { margin: 0 auto 20px; }
+
+    .contact-list li {
         justify-content: center;
+    }
+
+    .social-centered-wrapper {
+        margin-top: 40px;
+    }
+}
+
+
+/*---------------------- */
+.download-section {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    background: #f8fafc;
+}
+
+.download-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    border-color: #00A79D;
+}
+
+/* Icon Styling */
+.pdf-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff1f2; /* Soft red for PDF */
+    color: #e11d48;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* Text Content */
+.download-info {
+    flex-grow: 1;
+}
+
+.download-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.download-subtitle {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Action Buttons */
+.download-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-view, .btn-download {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-view {
+    color: #64748b;
+    background: #f1f5f9;
+}
+
+.btn-view:hover {
+    background: #e2e8f0;
+}
+
+.btn-download {
+    background: #00A79D;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-download:hover {
+    background: #008f86;
+    box-shadow: 0 4px 12px rgba(0, 167, 157, 0.2);
+}
+
+/* Responsive Mobile View */
+@media (max-width: 480px) {
+    .download-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .download-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
+/* --- GLOBAL PRESENCE SECTION --- */
+.adv-global-presence {
+    padding: 80px 20px;
+    background: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.global-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* --- Left Side: Image Styling --- */
+.global-image-side {
+    position: relative;
+}
+
+.image-frame {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.main-global-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-frame:hover .main-global-img {
+    transform: scale(1.05);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #00A79D;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 167, 157, 0.3);
+}
+
+.experience-badge span {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: block;
+}
+
+.experience-badge p {
+    margin: 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Right Side: Content Styling --- */
+.global-subtitle {
+    color: #00A79D;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.global-header h2 {
+    font-size: 2.6rem;
+    color: #2c3e50;
+    margin: 15px 0;
+    line-height: 1.2;
+}
+
+.global-header p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Region List Grid */
+.region-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.region-item {
+    background: #f4fdfc;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.region-item span {
+    margin-right: 10px;
+}
+
+.region-item:hover {
+    border-color: #00A79D;
+    background: white;
+    transform: translateX(5px);
+}
+
+/* --- Action Buttons --- */
+.global-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.btn-action {
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-view {
+    background: #f4fdfc;
+    color: #00A79D;
+    border: 2px solid #00A79D;
+}
+
+.btn-download {
+    background: #00A79D;
+    color: white;
+    border: 2px solid #00A79D;
+}
+
+.btn-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 167, 157, 0.2);
+}
+
+.btn-view:hover {
+    background: #00A79D;
+    color: white;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .global-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .global-image-side {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .global-header {
+        text-align: center;
+    }
+    
+    .region-grid {
+        justify-content: center;
+    }
+    
+    .global-actions {
+        justify-content: center;
+        flex-direction: column;
     }
 }
     </style>
 </head>
 
 <body>
-
 {% load static %}
 <nav id="navbar">
     <div class="logo-section" onclick="location.href='/'">
@@ -742,106 +1570,109 @@
   <i class="fas fa-phone"></i>  +91 9898265440
 </p>
     <div class="social-icons">
-       <a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
 <a href="https://wa.me/9898265440" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.instagram.com/YOUR_USERNAME" target="_blank">
+  <i class="fa-brands fa-instagram"></i>
+</a>
 <a href="https://www.facebook.com/share/1QCwCrvfFL" target="_blank"><i class="fab fa-facebook-f"></i></a>
 <a href="https://x.com/AdVitumHC" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
 </div>
 
 <div class="hero-banner">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-        <div class="hero-text-slides">
-            <div class="hero-text-slide active-text">
-                <h1>Excellence in Surgical &amp; Medical Disposable Exports</h1>
-                <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 35px; max-width: 600px;">
-                    We deliver meticulously crafted surgical and medical disposable products, developed to meet the most demanding international quality and regulatory standards.
-                </p>
-            </div>
-            <div class="hero-text-slide">
-                <h1>Where Precision Manufacturing Meets Global Compliance</h1>
-                <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 35px; max-width: 600px;">
-                    Every product is produced through controlled processes, strict quality assurance systems, and export-ready documentation tailored for international healthcare markets.
-                </p>
-            </div>
-            <div class="hero-text-slide">
-                <h1>A Refined &amp; Reliable Partner for Global Healthcare Supply</h1>
-                <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: 35px; max-width: 600px;">
-                    From hospitals and distributors to institutional buyers, we support long-term partnerships through consistent quality, dependable timelines, and transparent communication.
-                </p>
-            </div>
-        </div>
-        <a href="{% url 'products' %}" class="explore-btn">EXPLORE PRODUCTS</a>
+    <div class="hero-image-loop">
+        <img src="{% static 'add11.png' %}" alt="Medical Solutions 1">
+        <img src="{% static 'add22.png' %}" alt="Medical Solutions 2">
+        <img src="{% static 'add4.png' %}" alt="Medical Solutions 4">
     </div>
 
-    <div class="image-carousel">
-        <div class="carousel-images">
-            <img src="{% static 'add2.png' %}" class="active-image">
-            <img src="{% static 'add1.png' %}">
-            <img src="{% static 'add3.png' %}">
-        </div>
+    <div class="hero-overlay" style="margin-top: 200px; margin-left: 300px;">
+        <a href="{% url 'products' %}" class="explore-btn">EXPLORE >>></a>
     </div>
 </div>
 
-<section id="about-us-section" style="padding: 50px 5%; background: #f7fafa;">
-    <div style="display: flex; gap: 50px; align-items: flex-start; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 300px;">
-            <h2 style="font-size: 1.6rem; font-weight: 800; color: #2c3e50; margin-bottom: 10px;">Why Choose Us</h2>
-            <p style="font-size: 0.85rem; color: #7f8c8d; line-height: 1.7;">AdVitum Healthcare delivers certified, sterile, and globally compliant surgical and medical disposable solutions trusted across international markets. Backed by ISO 13485 &amp; CE certifications, advanced quality systems, and strong export expertise, we provide reliable supply, custom branding flexibility, and responsive support—ensuring long-term value for our global partners.</p>
-        </div>
-        <div style="flex: 1; min-width: 300px;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #2c3e50; margin-bottom: 12px;">Why Global Buyers Choose AdVitum Healthcare</h3>
-            <p style="font-size: 0.8rem; color: #555; line-height: 1.85;"><span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>100% Sterile &amp; Safe Products</strong> — Manufactured and supplied under strict quality and safety protocols.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>ISO 13485 &amp; CE Certified Portfolio</strong> — Internationally accepted standards for seamless market entry.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Advanced Manufacturing &amp; Quality Testing</strong> — Precision-controlled production with multi-level inspection processes.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Private Label &amp; Custom Packaging Solutions</strong> — Tailored branding to meet regional and distributor requirements.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Proven Global Export Expertise</strong> — Efficient logistics and regulatory understanding across Africa, the Middle East, and Europe.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Dedicated &amp; Responsive Customer Support</strong> — Professional communication focused on long-term partnerships.</p>
-        </div>
+<section id="about-us-section">
+  <div class="about-container">
+    
+    <div class="about-intro">
+      <h2 style="font-size:30px; color: #494949; font-weight: 700; padding: 10px;">Why Choose Us</h2>
+      <p>AdVitum Healthcare delivers certified, sterile, and globally compliant surgical and medical disposable solutions trusted across international markets. Backed by ISO 13485 & CE certifications, advanced quality systems, and strong export expertise, we provide reliable supply, custom branding flexibility, and responsive support—ensuring long-term value for our global partners.</p>
     </div>
+
+    <div class="benefits-grid">
+      
+      <div class="benefit-card">
+        <h3>Certified Standards</h3>
+        <ul>
+          <li><span class="icon">&#9654;</span><div><strong>🛡️	Sterile & Safe Products</strong> Manufactured and supplied under strict quality and safety protocols.</div></li>
+          <li><span class="icon">&#9654;</span><div><strong>📜 ISO 13485 & CE Certified</strong> Internationally accepted standards for seamless market entry.</div></li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Precision Quality</h3>
+        <ul>
+          <li><span class="icon">&#9654;</span><div><strong>⚙️ Advanced Manufacturing & Testing</strong> Precision-controlled production with multi-level inspection processes.</div></li>
+          <li><span class="icon">&#9654;</span><div><strong>🏷️	Private Label & Custom Packaging</strong> Tailored branding to meet regional and distributor requirements.</div></li>
+        </ul>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Export Expertise</h3>
+        <ul>
+          <li><span class="icon">&#9654;</span><div><strong>🌍 Global Export Expertise</strong> Efficient logistics and regulatory understanding across Africa, the Middle East, and Europe.</div></li>
+          <li><span class="icon">&#9654;</span><div><strong>🤝 Dedicated Customer Support</strong> Professional communication focused on long-term partnerships.</div></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
 </section>
 
-<!-- <section class="benefits-section">
-    <div class="main-container">
-        <h3 class="text-4xl font-extrabold mb-10">Premium Wholesale Benefits</h3>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <i class="fas fa-tags"></i>
-                <h4 class="font-bold text-xl mb-3">Wholesale Pricing</h4>
-                <p>Maximize your margins with direct manufacturer pricing tailored for hospitals.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-shipping-fast"></i>
-                <h4 class="font-bold text-xl mb-3">Swift Logistics</h4>
-                <p>Priority express shipping ensures your inventory never runs out.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="fas fa-shield-alt"></i>
-                <h4 class="font-bold text-xl mb-3">Quality Assured</h4>
-                <p>Every shipment is ISO-certified and undergoes strict inspection.</p>
-            </div>
-        </div>
-    </div> -->
 
-<section style="padding: 80px 5%; background: #f8fafb;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap;">
+<section id="impact-section">
+    <div class="container-impact">
         
         <div style="flex: 1; min-width: 320px;">
-            <span style="display: inline-block; padding: 5px 16px; border-radius: 50px; background: rgba(0,167,157,0.1); color: #00A79D; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 18px;">Our Impact</span>
-            <h2 style="font-size: 2.8rem; font-weight: 900; color: #1a202c; line-height: 1.15; margin-bottom: 18px;">Driving the Future of<br><span style="color: #00A79D;">Global Healthcare</span></h2>
-            <p style="font-size: 1rem; color: #6b7280; line-height: 1.75;">AdVitum combines years of logistical expertise with a relentless focus on quality. We don't just ship products; we deliver reliability to clinics and hospitals that save lives every single day.</p>
+            <span style="display: inline-block; padding: 6px 18px; border-radius: 50px; background: #00A79D; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,167,157,0.3);">Our Impact</span>
+            <h2 style="font-size: 3.2rem; font-weight: 900; color: #1a202c; line-height: 1.1; margin-bottom: 25px;">Driving the Future of<br><span style="color: #00A79D;">Global Healthcare</span></h2>
+            <p style="font-size: 1.1rem; color: #6b7280; line-height: 1.8;">AdVitum combines logistical expertise with a relentless focus on quality to deliver reliability to clinics and hospitals worldwide.</p>
         </div>
 
-        <div style="flex: 1; min-width: 320px;">
-            <p style="font-size: 0.88rem; color: #555; line-height: 2;"><span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Global Reach</strong> — Supporting healthcare providers across multiple international markets.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Swift &amp; Reliable Logistics</strong> — Efficient global logistics network ensuring timely, secure deliveries across international markets.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Quality Assured</strong> — Every product is supplied under strict quality control, meeting ISO-aligned and CE-compliant standards.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Newest Technology</strong> — Advanced manufacturing and testing technologies for consistent performance and reliability.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>High Customer Satisfaction</strong> — Trusted by global partners for professional service, prompt communication, and dependable supply.<br>
-            <span style="color: #00A79D; font-weight: 700;">&#9654;</span> <strong>Wide Range of Products</strong> — Comprehensive portfolio of surgical and medical disposables tailored for diverse healthcare needs.</p>
-        </div>
+        <div class="impact-points-grid">
+            
+            <div class="impact-card">
+                <strong>🌍 Global Reach</strong>
+                <span>Supporting healthcare providers across international markets.</span>
+            </div>
 
+            <div class="impact-card">
+                <strong>🚚 Swift Logistics</strong>
+                <span>Efficient global network ensuring timely, secure deliveries.</span>
+            </div>
+
+            <div class="impact-card">
+                <strong>✔️ Quality Assured</strong>
+                <span>Strict quality control meeting ISO and CE standards.</span>
+            </div>
+
+            <div class="impact-card">
+                <strong>⚡ Newest Technology</strong>
+                <span>Advanced manufacturing for consistent medical performance.</span>
+            </div>
+
+            <div class="impact-card">
+                <strong>😊 High Satisfaction</strong>
+                <span>Trusted for professional service and dependable supply.</span>
+            </div>
+
+            <div class="impact-card">
+                <strong>📦 Wide Range</strong>
+                <span>Comprehensive portfolio tailored for diverse needs.</span>
+            </div>
+
+        </div>
     </div>
 </section>
    
@@ -849,85 +1680,138 @@
 </section>
 
 <!-- STATS CARDS SECTION -->
-<section style="padding: 60px 5%; background: #ffffff;">
-    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 2rem; font-weight: 900; color: #00A79D; white-space: nowrap;">15+</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Years</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">Industry &amp; Export Experience (via backbone company)</p>
+<section class="stats-section">
+    <div class="stats-container">
+        
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">15+</span>
+                <p class="stat-label">Years Experience</p>
             </div>
+            <p class="stat-desc">Proven industry & export leadership through our backbone company.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 2rem; font-weight: 900; color: #00A79D; white-space: nowrap;">20+</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Product Segments</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">Surgical &amp; Medical Disposable Solutions</p>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">20+</span>
+                <p class="stat-label">Product Segments</p>
             </div>
+            <p class="stat-desc">Comprehensive surgical & medical disposable solutions for global needs.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 2rem; font-weight: 900; color: #00A79D; white-space: nowrap;">10+</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Countries</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">Global Markets Served</p>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">10+</span>
+                <p class="stat-label">Countries</p>
             </div>
+            <p class="stat-desc">Established presence across international healthcare markets.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 1.7rem; font-weight: 900; color: #00A79D; white-space: nowrap;">1,000+</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Partnerships</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">Distributors, Importers &amp; Healthcare Buyers</p>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">1,000+</span>
+                <p class="stat-label">Global Partnerships</p>
             </div>
+            <p class="stat-desc">Trusted by distributors, importers, and healthcare buyers worldwide.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 1.4rem; font-weight: 900; color: #00A79D; white-space: nowrap;">ISO &amp; CE</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Certified</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">International Quality &amp; Safety Standards</p>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">ISO & CE</span>
+                <p class="stat-label">Certified Quality</p>
             </div>
+            <p class="stat-desc">Meeting the highest international quality and safety standards.</p>
         </div>
-        <div style="display: flex; align-items: center; gap: 16px; padding: 22px 20px; background: #f7fafa; border-radius: 12px; ">
-            <p style="font-size: 1.1rem; font-weight: 900; color: #00A79D; white-space: nowrap;">Private Label</p>
-            <div>
-                <p style="font-size: 0.82rem; font-weight: 700; color: #2c3e50;">Ready</p>
-                <p style="font-size: 0.72rem; color: #7f8c8d; line-height: 1.4;">Custom Branding &amp; Packaging Solutions</p>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <span class="stat-number">Private Label</span>
+                <p class="stat-label">Custom Ready</p>
+            </div>
+            <p class="stat-desc">Tailored branding and packaging solutions to fit your market.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CERTIFICATIONS SECTION -->
+<section class="cert-section">
+    <div class="cert-container">
+        <h2 class="cert-title"style="size:30px; color: #0fb1a3; font-weight: 700;">Certification & Compliance</h2>
+        
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon-bg">
+                    <img src="{% static 'iso.png' %}" alt="ISO 13485">
+                </div>
+                <p class="cert-name">ISO 13485</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon-bg">
+                    <img src="{% static 'eumdr.png' %}" alt="CE / EU MDR">
+                </div>
+                <p class="cert-name">CE / EU MDR</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon-bg">
+                    <img src="{% static 'iso2.png' %}" alt="FDA Approvals">
+                </div>
+                <p class="cert-name">FDA Approvals</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon-bg">
+                    <img src="{% static 'who.png' %}" alt="WHO-GMP">
+                </div>
+                <p class="cert-name">WHO-GMP</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- CERTIFICATIONS SECTION -->
-<section style="padding: 60px 5%; background: #f7fafa;">
-    <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: 1.6rem; font-weight: 800; color: #2c3e50; margin-bottom: 35px;">Surgical products are highly regulated. Some trusted standards:</h2>
-        <div style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;">
-            <div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <div style="width: 100px; height: 100px; background: #eef4f4; border-radius: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center;">
-                    <img src="" alt="ISO 13485" style="max-width: 80px; max-height: 80px; object-fit: contain;">
+<section class="adv-global-presence">
+    <div class="global-container">
+        
+        <div class="global-image-side">
+            <div class="image-frame">
+                <img src="{% static 'map.png' %}" alt="AdVitum Global Presence" class="main-global-img">
+                <div class="experience-badge">
+                    <span>10+</span>
+                    <p>Countries</p>
                 </div>
-                <p style="font-size: 0.85rem; font-weight: 700; color: #2c3e50;">ISO 13485</p>
-            </div>
-            <div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <div style="width: 100px; height: 100px; background: #eef4f4; border-radius: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center;">
-                    <img src="" alt="CE / EU MDR" style="max-width: 80px; max-height: 80px; object-fit: contain;">
-                </div>
-                <p style="font-size: 0.85rem; font-weight: 700; color: #2c3e50;">CE / EU MDR</p>
-            </div>
-            <div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <div style="width: 100px; height: 100px; background: #eef4f4; border-radius: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center;">
-                    <img src="" alt="FDA Approvals" style="max-width: 80px; max-height: 80px; object-fit: contain;">
-                </div>
-                <p style="font-size: 0.85rem; font-weight: 700; color: #2c3e50;">FDA Approvals</p>
-            </div>
-            <div style="width: 200px; height: 200px; background: white; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <div style="width: 100px; height: 100px; background: #eef4f4; border-radius: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center;">
-                    <img src="" alt="WHO-GMP" style="max-width: 80px; max-height: 80px; object-fit: contain;">
-                </div>
-                <p style="font-size: 0.85rem; font-weight: 700; color: #2c3e50;">WHO-GMP</p>
             </div>
         </div>
+
+        <div class="global-content-side">
+            <div class="global-header">
+                <span class="global-subtitle">🌐 Global Presence</span>
+                <h2>Expanding Healthcare Horizons</h2>
+                <p>AdVitum Healthcare is expanding across Asia, Africa, the Middle East, and Latin America — serving hospitals, distributors, and importers with dependable medical disposables.</p>
+            </div>
+
+            <div class="region-grid">
+                <div class="region-item"><span>📍</span> Africa</div>
+                <div class="region-item"><span>📍</span> South-East Asia</div>
+                <div class="region-item"><span>📍</span> Middle East</div>
+                <div class="region-item"><span>📍</span> Latin America</div>
+            </div>
+
+            <div class="global-actions">
+                 <a href="/media/Advitum_Catalogue.pdf" target="_blank" class="btn-view">
+                View Catalogue
+            </a>
+            
+            <a href="/media/Advitum_Catalogue.pdf" download="Advitum_Catalogue_2026" class="btn-download">
+                <i class="fas fa-download"></i> Download Catalogue
+            </a>
+            </div>
+        </div>
+        
     </div>
 </section>
+
 
 <div class="py-20 bg-[#f8fafb] overflow-hidden">
     
@@ -990,53 +1874,57 @@
 
 
 <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <div class="footer-logo-container">
-                    <img src="{% static 'new_logo.png' %}" alt="AdVitum Logo" class="footer-logo">
-                </div>
-                <p>Trusted global supplier of certified surgical and medical disposable products, delivering quality and reliability to international healthcare markets.</p>
-                <div class="footer-social">
-                      <a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-<a href="https://wa.me/9898265440" target="_blank"><i class="fab fa-whatsapp"></i></a>
-<a href="https://www.facebook.com/share/1QCwCrvfFL" target="_blank"><i class="fab fa-facebook-f"></i></a>
-
-                </div>
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="footer-logo-container">
+                <img src="{% static 'new_logo.png' %}" alt="AdVitum Logo" class="footer-logo">
             </div>
-
-            <div class="footer-col">
-                <h4>Product Categories</h4>
-                <ul>
-                    <li><a href="{% url 'products' %}">Surgical Gloves</a></li>
-                    <li><a href="{% url 'products' %}">Face Masks</a></li>
-                    <li><a href="{% url 'products' %}">IV Cannula</a></li>
-                    <li><a href="{% url 'products' %}">Disposable Gowns</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'products' %}">Products</a></li>
-                    <li><a href="{% url 'about' %}">About Us</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <ul class="contact-list">
-                    <li><i class="fas fa-envelope"></i> info@advitumhealthcare.com</li>
-                    <li><i class="fas fa-phone"></i> +91 9898265440</li>
-                    <li><i class="fas fa-location-dot"></i> Gujarat, India</li>
-                </ul>
-            </div>
+            <p>Trusted global supplier of certified surgical and medical disposable products, delivering quality and reliability to international healthcare markets.</p>
         </div>
 
-        
-        
-    </footer>
+        <div class="footer-col">
+            <h4>Product Categories</h4>
+            <ul>
+                <li><a href="{% url 'products' %}">Surgical Gloves</a></li>
+                <li><a href="{% url 'products' %}">Face Masks</a></li>
+                <li><a href="{% url 'products' %}">IV Cannula</a></li>
+                <li><a href="{% url 'products' %}">Disposable Gowns</a></li>
+                <li><a href="{% url 'products' %}">Diagnostic & Lab Products</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'products' %}">Products</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul class="contact-list">
+                <li><i class="fas fa-envelope"></i> info@advitumhealthcare.com</li>
+                <li><i class="fas fa-phone"></i> +91 9898265440</li>
+                <li><i class="fas fa-location-dot"></i>Siddhi Vinayak Business Park, Makarba, S.G. Road, Ahmedabad(380051), Gujarat, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="social-centered-wrapper">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/advitum-healthcare/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/9898265440" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/YOUR_USERNAME" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1QCwCrvfFL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/AdVitumHC" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+</footer>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
