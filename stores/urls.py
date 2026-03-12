@@ -6,7 +6,14 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', first, name='first'),
     path('home', home, name='home'),
+<<<<<<< HEAD
     path('product', product, name='products'),
     path('about', about, name='about'),
     path('contact', contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+  path('product', product, name='products'),
+  path('about', about, name='about'),
+  path('contact', contact, name='contact'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> 0a42598d478252253a86aabd558b58b3ed4bed23
